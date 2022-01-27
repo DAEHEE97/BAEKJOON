@@ -164,3 +164,102 @@ print(res_list)
 
     [4, 5]
 
+
+# 1152
+
+
+```python
+lst = input().split()
+print(len(lst))
+```
+
+    hello world
+    2
+
+
+# 2908
+
+
+```python
+A,B = input().split()
+
+a0=int(A[2])
+a1=int(A[1])
+a2=int(A[0])
+
+b0=int(B[2])
+b1=int(B[1])
+b2=int(B[0])
+
+A = 100*a0+10*a1+a2
+B = 100*b0+10*b1+b2
+
+
+if A > B:
+    print(A)
+else : print(B)
+
+```
+
+    738 467
+    837
+
+
+## swap
+
+
+```python
+a = 1
+b = 2
+c = 3
+
+a,b,c = c,a,b
+print(a,b,c)
+```
+
+    3 1 2
+
+
+# 5622
+
+A = 3 초
+W = 10초
+
+979353
+
+
+
+
+```python
+string = input()
+
+alphabet_lst = "ABC DEF GHI JKL MNO PQRS TUV WXYZ".split()
+
+d = {}
+
+# dictionary
+for i in range(len(alphabet_lst)):
+
+    for j in range(len(alphabet_lst[i])):
+        
+        word = alphabet_lst[i]
+        d[word[j]] = i+3
+        
+
+
+sum = 0
+
+for j in range(len(string)):
+    
+    for i in range(65,90+1):
+        
+        if chr(i) in string[j] :
+            #print(chr(i))
+            sum += d[chr(i)]
+
+print(sum)
+```
+
+    WA
+    13
+
