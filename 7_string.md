@@ -15,26 +15,35 @@ print(ord(N))
 
 # 11720
 
+- 입력으로 주어진 숫자(number) N개(idx)의 합을 출력
+
+
 
 ```python
 N = int(input())
 
-M = input()
+number = input()
 
 
 sum = 0
+
+# idx i
+
 for i in range(N):
-    sum += int(M[i])
+    sum += int(number[i])
 
 print(sum)
 ```
 
     5
-    54321
+    543217
     15
 
 
 # 10809
+
+- 각각의 알파벳에 대해서, a가 처음 등장하는 위치, b가 처음 등장하는 위치, ... z가 처음 등장하는 위치를 공백으로 구분해서 출력
+- 만약, 어떤 알파벳이 단어에 포함되어 있지 않다면 -1을 출력
 
 
 ```python
@@ -59,19 +68,22 @@ for i in range(97,122+1):
 ```python
 import sys
 
+# test case
 T = int(input())
 lst = []
-for i in range(T):
-    
 
+
+for i in range(T):    
     #lst.append(sys.stdin.readline().strip())
     lst.append(input())
 
+    
 for i in range(T):
     
-    n,S = lst[i].split()
+    # 반복횟수와 문자열 구분
+    n,S = lst[i].split() 
     n = int(n)
-    
+    # idx i
     for i in range(len(S)):
         print(S[i]*n,end="")
 
@@ -91,6 +103,9 @@ for i in range(T):
 
 # 1157
 
+- 첫째 줄에 이 단어에서 가장 많이 사용된 알파벳을 대문자로 출력한다. 
+- 단, 가장 많이 사용된 알파벳이 여러 개 존재하는 경우에는 ?를 출력한다.
+
 
 ```python
 
@@ -99,7 +114,7 @@ word = input()
 word = word.upper()
 
 
-# list
+# zero list
 lst = [0 for i in range(91-65)]
 
 # count 
@@ -110,9 +125,11 @@ for i in range(len(word)):
         
         if word[i] == chr(J):
             lst[j] +=1
-    
-    
-# max idx
+
+# count list            
+print(lst)
+
+# 중복 제거
 idx_list = [i for i, value in enumerate(lst) if value == max(lst)]
 
 if len(idx_list) >= 2:
@@ -125,22 +142,22 @@ else :
     
 ```
 
-    hello
-    L
+    zZa
+    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2]
+    Z
 
 
 ## filter
 
-- filter를 이용하여 test_list에서 3의 위치를 모두 반환하는 코드이다. 
-- filter를 사용하고 list로 감싸줘야 우리가 원하는 형태를 얻을 수 있다. 
-- 더불어 filter는 lambda와 같이 사용하면 유용하니 꼭 기억하자.
+- filter를 이용하여 test_list에서 3의 위치를 모두 반환하는 코드
+- 더불어 filter는 lambda와 같이 사용하면 유용
 
 
 ```python
 test_list = [1, 3, 4, 3, 6, 7]
 
-res_list = list(filter(lambda x: test_list[x] == 3, range(len(test_list))))
-print(res_list)
+result_list = list(filter(lambda x: test_list[x] == 3, range(len(test_list))))
+print(result_list)
 ```
 
     [1, 3]
@@ -148,21 +165,46 @@ print(res_list)
 
 ## enumerate
 
-- enumerate는 value와 index를 같이 반환하는 파이썬 내장 함수이다. 
-- filter를 사용 했을 때와 같은 결과를 얻을 수 있다. 
-- 개인적으로 enumerate가 직관적이고 사용하기 간편하다.
+- enumerate는 value와 index를 같이 반환하는 파이썬 내장 함수
+
+
+```python
+test_list = [1, 3, 4, 3, 6, 7]
+result_list= [i for i, value in enumerate(test_list) if value == 3]
+print(result_list)
+
+```
+
+    [1, 3]
+
+
+## for i
+
+
+```python
+test_list = [1, 3, 4, 3, 6, 7]
+result_list = [ i for i in range(len(test_list)) if test_list[i] == 3 ]
+print(result_list)
+```
+
+    [1, 3]
 
 
 
 ```python
-test_list = [1, 3, 4, 3, 7, 7]
+test_list = [1, 3, 4, 3, 6, 7]
 
-res_list = [i for i, value in enumerate(test_list) if value == max(test_list)]
-print(res_list)
+result_list = []
 
+# i = idx
+for i in range(len(test_list)):
+    if test_list[i] == 3:
+        result_list.append(i)
+        
+print(result_list)
 ```
 
-    [4, 5]
+    [1, 3]
 
 
 # 1152
@@ -201,8 +243,24 @@ else : print(B)
 
 ```
 
-    738 467
-    837
+    734 893
+    437
+
+
+
+```python
+A,B = input().split()
+
+a = [ A[i] for i in range(len(A)) ]
+b = [ B[i] for i in range(len(B)) ]
+
+print(a,b)
+
+
+```
+
+    734 893
+    ['7', '3', '4'] ['8', '9', '3']
 
 
 ## swap
@@ -222,12 +280,6 @@ print(a,b,c)
 
 # 5622
 
-A = 3 초
-W = 10초
-
-979353
-
-
 
 
 ```python
@@ -246,7 +298,7 @@ for i in range(len(alphabet_lst)):
         d[word[j]] = i+3
         
 
-
+print(d)
 sum = 0
 
 for j in range(len(string)):
@@ -261,101 +313,64 @@ print(sum)
 ```
 
     WA
+    {'A': 3, 'B': 3, 'C': 3, 'D': 4, 'E': 4, 'F': 4, 'G': 5, 'H': 5, 'I': 5, 'J': 6, 'K': 6, 'L': 6, 'M': 7, 'N': 7, 'O': 7, 'P': 8, 'Q': 8, 'R': 8, 'S': 8, 'T': 9, 'U': 9, 'V': 9, 'W': 10, 'X': 10, 'Y': 10, 'Z': 10}
     13
-
-
-
-```python
-
-# 크로아티아 알파벳
-idx = tmp.index('lj')
-cnt ++
-idx + 2
-
-```
-
-
-
-
-    0
-
 
 
 # 2941
 
-- 특정 문자의 개수 구하기 
-- 2개이상의 문자를 하나로 
-- 있는지 체크 몇개 까지 있는지 확인
-- 전체 길이에서 
-
-
- 
+- for i in lst: replace()
+- 특정문자 index()로 문제해결시 중복 문제가 발생하여 replcae
 
 
 ```python
-tmp = 'ljes=njak'
-```
+c_lst = ['c=', 'c-', 'dz=', 'd-', 'lj', 'nj', 's=', 'z=']
 
+word = input()
 
-```python
-c_lst = ["c=","c-","dz=","d-","lj","nj","s=","z="]
+for i in c_lst :
+    word = word.replace(i, '*')
+
+print(len(word))
 
 
 ```
 
+    c=c=kk
+    4
 
-```python
-len(tmp)
-```
-
-
-
-
-    9
-
-
-
-
-```python
-# 중복검사  후 개수
-
-
-
-# 나머지 -1
-# c_lst[3] 은 -2
-
-```
-
-
-```python
-# 단어 안의 c2_lst[1] 체크
-
-
-
-
-for i in range(len(c_lst)):
-    
-    for j in range(len(tmp)):
-        
-        if c_lst[i] in tmp[j]: # ljes=njak안에 크로아티아 단어들 있는지 X 리스트 하나당 있는지
-            print(c_lst[i])
-    
-
-
-```
 
 # 1316
 
-- 그룹 문자
 
-- 리스트로 문자열 입력 받음
 
-- 연속해서 나와도 되지만, 다른 문자가 나오고 나서는 나오면 안됩니다.
+```python
+import sys
 
-- 문자열 idx0 부터
-- 0 이 a > 
-- tmp = a 
-- 다음 idx 1 로 넘어가면서 
-- 반복문 넘어가면서, a > b 로 가면서 'a'를 lst에추가
-- 반복하면서 해당 lst 체크 후 있으면 다른 문자로 패스
+
+N = int(input())
+
+word_lst = [input() for i in range(N)]
+# word_lst = [sys.stdin.readline() for i in range(N)]
+
+for word in word_lst:
+    
+    for i in range(len(word)-1):
+        
+        if word.index(word[i]) > word.index(word[i+1]):
+            N -= 1
+            break
+        else:
+            continue
+            
+print(N)
+        
+    
+```
+
+    3
+    akaka
+    aaabb
+    asd
+    2
 
