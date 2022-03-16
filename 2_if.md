@@ -118,11 +118,15 @@ print(H,M)
 hour, minute = map(int,input().split())
 cooking_minute = int(input())
 
-
 cooked_minute = minute + cooking_minute
+
+# + 한 minute 를 60분을 기준으로 hour, minute 분리
+# 73 > (1,13)
 
 Ch,Cm = divmod(cooked_minute,60)
 
+
+# + 한 hour 가 24:00 을 넘을 경우 처리
 if (hour+Ch >= 24):
     
     tmp,cooked_hour = divmod(hour+Ch,24)
@@ -134,29 +138,32 @@ else:
     
 ```
 
-    17 40
-    80
-    19 0
+    23 48
+    25
+    0 13
 
 
 ## 2525 - 2 
 
 
 ```python
-A, B = map(int,input().split())
+H, M = map(int,input().split())
 C = int(input())
 
-A = A + (C // 60)
-B = B + (C % 60)
+H = H + (C // 60) # 60분 초과 계산 후 hour
+M = M + (C % 60)  # 60분 초과 계산 후 minute 
 
-if B >= 60 :
-    A+=1
-    B-=60
 
-if A >= 24 :
-    A-=24
+# + 한 minute 가 60 초과시 minute > hour 승격, 나머지 hour 계산
+if M >= 60 : 
+    H+=1
+    M-=60
 
-print(A,B)
+# 24:00     
+if H >= 24 :
+    H-=24
+
+print(H,M)
 ```
 
     23 48
